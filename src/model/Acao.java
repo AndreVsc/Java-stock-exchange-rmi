@@ -30,9 +30,4 @@ public class Acao implements Serializable {
     public synchronized void setPreco(double novoPreco) {
         this.preco = novoPreco;
     }
-    
-    @Override
-    public String toString() {
-        return simbolo + " - " + nome + ": R$" + String.format("%.2f", preco);
-    }
 }

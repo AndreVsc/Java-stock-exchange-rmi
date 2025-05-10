@@ -66,10 +66,4 @@ public class Ordem implements Serializable {
     public void setExecutada(boolean executada) {
         this.executada = executada;
     }
-    
-    @Override
-    public String toString() {
-        return tipo + " " + quantidade + " " + simboloAcao + " @ R$" + 
-               String.format("%.2f", preco) + " [" + (executada ? "EXECUTADA" : "PENDENTE") + "]";
-    }
 }
