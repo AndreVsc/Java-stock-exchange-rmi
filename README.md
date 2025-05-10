@@ -53,7 +53,7 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
 ## Checklist de Responsabilidades com Exemplos
 
 ✅ ** Múltiplas threads atualizam preços de ações aleatoriamente**
-    ```java
+   ```java
     // src/service/BolsaValoresService.java
     public void iniciarSimulacao() {
         for (String simbolo : acoes.keySet()) {
@@ -62,8 +62,7 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
             atualizadorPreco.start();
         }
     }
-    ```
-
+   ```
 ✅ ** Outros threads (investidores) reagem a mudanças específicas de preço**
    ```java
     // src/app/InvestidorApp.java
@@ -74,7 +73,6 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
         }
     }
    ```
-
 ✅ ** Implemente um book de ofertas com operações de compra/venda**
   ```java
     // src/service/BookDeOfertas.java
@@ -91,7 +89,7 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
     private final Map<String, List<Ordem>> ordensVenda = new ConcurrentHashMap<>();
     // Uso de synchronized e listas sincronizadas para garantir consistência
   ```
-- ✅ ** Uso do RMI**
+✅ ** Uso do RMI**
   ```java
     // src/app/ServidorBolsaValores.java
     Registry registry = LocateRegistry.createRegistry(1099);
@@ -101,7 +99,6 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
     Registry registry = LocateRegistry.getRegistry(serverAddress, 1099);
     BolsaValoresRemote bolsa = (BolsaValoresRemote) registry.lookup("BolsaValores");
   ```
-
 ---
 
 **Função original validada:**
