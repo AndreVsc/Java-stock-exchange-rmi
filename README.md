@@ -52,7 +52,7 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
 
 ## Checklist de Responsabilidades com Exemplos
 
-✅ ** Múltiplas threads atualizam preços de ações aleatoriamente**
+**✅ Múltiplas threads atualizam preços de ações aleatoriamente**
    ```java
     // src/service/BolsaValoresService.java
     public void iniciarSimulacao() {
@@ -63,7 +63,7 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
         }
     }
    ```
-✅ ** Outros threads (investidores) reagem a mudanças específicas de preço**
+**✅ Outros threads (investidores) reagem a mudanças específicas de preço**
    ```java
     // src/app/InvestidorApp.java
     @Override
@@ -73,7 +73,7 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
         }
     }
    ```
-✅ ** Implemente um book de ofertas com operações de compra/venda**
+**✅ Implemente um book de ofertas com operações de compra/venda**
   ```java
     // src/service/BookDeOfertas.java
     public void adicionarOrdem(Ordem ordem) {
@@ -82,14 +82,14 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
         notificarAlteracaoBook(simbolo);
     }
   ```
-✅ ** Garanta consistência nos dados com alta concorrência**
+**✅ Garanta consistência nos dados com alta concorrência**
   ```java
     // src/service/BookDeOfertas.java
     private final Map<String, List<Ordem>> ordensCompra = new ConcurrentHashMap<>();
     private final Map<String, List<Ordem>> ordensVenda = new ConcurrentHashMap<>();
     // Uso de synchronized e listas sincronizadas para garantir consistência
   ```
-✅ ** Uso do RMI**
+**✅ Uso do RMI**
   ```java
     // src/app/ServidorBolsaValores.java
     Registry registry = LocateRegistry.createRegistry(1099);
