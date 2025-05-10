@@ -11,14 +11,22 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import interfaces.PrecoAcaoListener;
 
+/*
+ * Serviço principal da Bolsa de Valores.
+ *
+ * Gerencia as ações, listeners de preço e book de ofertas.
+ * Responsável por iniciar a simulação de preços e garantir concorrência.
+ */
 public class BolsaValoresService {
     private final Map<String, Acao> acoes = new ConcurrentHashMap<>();
     private final List<PrecoAcaoListener> listeners = new ArrayList<>();
     private final Random random = new Random();
     private final BookDeOfertas bookDeOfertas;
     
+    /**
+     * Inicializa o serviço com ações de exemplo e book de ofertas.
+     */
     public BolsaValoresService() {
-        // Inicializando com algumas ações de exemplo
         acoes.put("PETR4", new Acao("PETR4", "Petrobras", 28.50));
         acoes.put("VALE3", new Acao("VALE3", "Vale", 68.20));
         acoes.put("ITUB4", new Acao("ITUB4", "Itaú Unibanco", 32.90));
@@ -28,6 +36,9 @@ public class BolsaValoresService {
         bookDeOfertas = new BookDeOfertas();
     }
     
+    /**
+     * Inicia threads para simulação de atualização de preços das ações.
+     */
     public void iniciarSimulacao() {
         for (String simbolo : acoes.keySet()) {
             Thread atualizadorPreco = new Thread(new AtualizadorPreco(simbolo));
@@ -36,30 +47,48 @@ public class BolsaValoresService {
         }
     }
     
+    /**
+     * Retorna a ação pelo símbolo.
+     */
+    public Acao getAcao(String simbolo) {
+        return acoes.get(simbolo);
+    }
+
+    /**
+     * Retorna o book de ofertas.
+     */
+    public BookDeOfertas getBookDeOfertas() {
+        return bookDeOfertas;
+    }
+    
+    /**
+     * Retorna todas as ações disponíveis.
+     */
     public Map<String, Acao> getAcoes() {
         return new HashMap<>(acoes);
     }
     
-    public Acao getAcao(String simbolo) {
-        return acoes.get(simbolo);
-    }
-    
+    /**
+     * Adiciona um listener para notificações de preço.
+     */
     public void adicionarListener(PrecoAcaoListener listener) {
         synchronized (listeners) {
             listeners.add(listener);
         }
     }
     
+    /**
+     * Remove um listener de notificações de preço.
+     */
     public void removerListener(PrecoAcaoListener listener) {
         synchronized (listeners) {
             listeners.remove(listener);
         }
     }
-    
-    public BookDeOfertas getBookDeOfertas() {
-        return bookDeOfertas;
-    }
-    
+
+    /**
+     * Thread interna que simula a atualização de preços de uma ação.
+     */
     private class AtualizadorPreco implements Runnable {
         private final String simboloAcao;
         
