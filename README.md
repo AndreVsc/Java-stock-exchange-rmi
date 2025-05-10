@@ -52,7 +52,7 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
 
 ## Checklist de Responsabilidades com Exemplos
 
-- ✅ ** Múltiplas threads atualizam preços de ações aleatoriamente**
+✅ ** Múltiplas threads atualizam preços de ações aleatoriamente**
     ```java
     // src/service/BolsaValoresService.java
     public void iniciarSimulacao() {
@@ -63,8 +63,9 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
         }
     }
     ```
-- ✅ ** Outros threads (investidores) reagem a mudanças específicas de preço**
-    ```java
+
+✅ ** Outros threads (investidores) reagem a mudanças específicas de preço**
+   ```java
     // src/app/InvestidorApp.java
     @Override
     public void notificarMudancaPreco(String simboloAcao, double precoAntigo, double novoPreco) throws RemoteException {
@@ -72,25 +73,26 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
             System.out.printf("[ATUALIZAÇÃO] %s: R$%.2f -> R$%.2f\n", simboloAcao, precoAntigo, novoPreco);
         }
     }
-    ```
-- ✅ ** Implemente um book de ofertas com operações de compra/venda**
-    ```java
+   ```
+
+✅ ** Implemente um book de ofertas com operações de compra/venda**
+  ```java
     // src/service/BookDeOfertas.java
     public void adicionarOrdem(Ordem ordem) {
         // Adiciona ordem de compra ou venda e tenta casar ordens
         verificarExecucaoOrdens(simbolo);
         notificarAlteracaoBook(simbolo);
     }
-    ```
-- ✅ ** Garanta consistência nos dados com alta concorrência**
-    ```java
+  ```
+✅ ** Garanta consistência nos dados com alta concorrência**
+  ```java
     // src/service/BookDeOfertas.java
     private final Map<String, List<Ordem>> ordensCompra = new ConcurrentHashMap<>();
     private final Map<String, List<Ordem>> ordensVenda = new ConcurrentHashMap<>();
     // Uso de synchronized e listas sincronizadas para garantir consistência
-    ```
+  ```
 - ✅ ** Uso do RMI**
-    ```java
+  ```java
     // src/app/ServidorBolsaValores.java
     Registry registry = LocateRegistry.createRegistry(1099);
     registry.bind("BolsaValores", bolsaRemota);
@@ -98,7 +100,7 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
     // src/app/InvestidorApp.java
     Registry registry = LocateRegistry.getRegistry(serverAddress, 1099);
     BolsaValoresRemote bolsa = (BolsaValoresRemote) registry.lookup("BolsaValores");
-    ```
+  ```
 
 ---
 
