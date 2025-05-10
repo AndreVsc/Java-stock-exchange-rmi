@@ -1,13 +1,13 @@
-# 💹 Bolsa de Valores RMI - Java
+# Bolsa de Valores RMI - Java
 
 Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Method Invocation). O sistema permite múltiplos investidores conectados, atualização automática de preços de ações e um book de ofertas para operações de compra e venda.
 
 ## ✨ Funcionalidades
 
-- 🔄 **Atualização automática de preços**: Múltiplas threads atualizam os preços das ações de forma aleatória, simulando o mercado em tempo real.
-- 👤 **Investidores reativos**: Investidores (em threads separadas) recebem notificações e reagem a mudanças de preço das ações que acompanham.
-- 📖 **Book de ofertas**: Implementação de um book de ofertas, permitindo registrar ordens de compra e venda, casar ordens e exibir as melhores ofertas.
-- 🌐 **Comunicação distribuída**: Toda a comunicação entre clientes (investidores) e o servidor da bolsa é feita via Java RMI.
+- **Atualização automática de preços**: Múltiplas threads atualizam os preços das ações de forma aleatória, simulando o mercado em tempo real.
+- **Investidores reativos**: Investidores (em threads separadas) recebem notificações e reagem a mudanças de preço das ações que acompanham.
+- **Book de ofertas**: Implementação de um book de ofertas, permitindo registrar ordens de compra e venda, casar ordens e exibir as melhores ofertas.
+- **Comunicação distribuída**: Toda a comunicação entre clientes (investidores) e o servidor da bolsa é feita via Java RMI.
 
 ## 🗂️ Estrutura do Projeto
 
@@ -22,11 +22,11 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
 
 ## ⚙️ Como funciona
 
-1. 🏁 O servidor inicia e cria várias threads, cada uma responsável por atualizar o preço de uma ação aleatoriamente.
-2. 🤝 Investidores se conectam ao servidor via RMI, registrando-se para receber notificações de mudanças de preço e alterações no book de ofertas.
-3. 🔔 Quando o preço de uma ação muda, todos os investidores interessados são notificados.
-4. 👀 Investidores podem visualizar as melhores ofertas de compra e venda (book de ofertas) e enviar ordens.
-5. 🤖 O book de ofertas casa ordens compatíveis automaticamente.
+1. O servidor inicia e cria várias threads, cada uma responsável por atualizar o preço de uma ação aleatoriamente.
+2. Investidores se conectam ao servidor via RMI, registrando-se para receber notificações de mudanças de preço e alterações no book de ofertas.
+3. Quando o preço de uma ação muda, todos os investidores interessados são notificados.
+4. Investidores podem visualizar as melhores ofertas de compra e venda (book de ofertas) e enviar ordens.
+5. O book de ofertas casa ordens compatíveis automaticamente.
 
 ## 🚀 Execução
 
@@ -44,15 +44,15 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
    ```
 
 ## 📝 Observações
-- 💡 O projeto é totalmente multi-threaded e distribuído.
-- 🧭 O controller centraliza as operações, simplificando a lógica da aplicação.
-- 🧹 O código foi simplificado e comentários removidos para facilitar o entendimento.
+- O projeto é totalmente multi-threaded e distribuído.
+- O controller centraliza as operações, simplificando a lógica da aplicação.
+- O código foi simplificado e comentários removidos para facilitar o entendimento.
 
 ---
 
-## ✅ Checklist de Responsabilidades com Exemplos
+## Checklist de Responsabilidades com Exemplos
 
-- [x] **🔄 Múltiplas threads atualizam preços de ações aleatoriamente**
+- ✅ ** Múltiplas threads atualizam preços de ações aleatoriamente**
     ```java
     // src/service/BolsaValoresService.java
     public void iniciarSimulacao() {
@@ -63,7 +63,7 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
         }
     }
     ```
-- [x] **👤 Outros threads (investidores) reagem a mudanças específicas de preço**
+- ✅ ** Outros threads (investidores) reagem a mudanças específicas de preço**
     ```java
     // src/app/InvestidorApp.java
     @Override
@@ -73,7 +73,7 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
         }
     }
     ```
-- [x] **📖 Implemente um book de ofertas com operações de compra/venda**
+- ✅ ** Implemente um book de ofertas com operações de compra/venda**
     ```java
     // src/service/BookDeOfertas.java
     public void adicionarOrdem(Ordem ordem) {
@@ -82,14 +82,14 @@ Este projeto simula uma bolsa de valores simples utilizando Java RMI (Remote Met
         notificarAlteracaoBook(simbolo);
     }
     ```
-- [x] **🔒 Garanta consistência nos dados com alta concorrência**
+- ✅ ** Garanta consistência nos dados com alta concorrência**
     ```java
     // src/service/BookDeOfertas.java
     private final Map<String, List<Ordem>> ordensCompra = new ConcurrentHashMap<>();
     private final Map<String, List<Ordem>> ordensVenda = new ConcurrentHashMap<>();
     // Uso de synchronized e listas sincronizadas para garantir consistência
     ```
-- [x] **🌐 Uso do RMI**
+- ✅ ** Uso do RMI**
     ```java
     // src/app/ServidorBolsaValores.java
     Registry registry = LocateRegistry.createRegistry(1099);
